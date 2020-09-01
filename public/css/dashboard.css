@@ -1,0 +1,54 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    font-family: 'poppins';
+}
+
+body {
+    background-color: #1D2134;
+}
+
+.dashboard-page {
+    padding: 3em 5em;
+}
+
+.dashboard-page h1 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: .5em;
+}
+
+.dashboard-page table {
+    margin-top: 3em;
+}
+
+.dashboard-page>a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 1em;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+}
+
+.dashboard-page table .action {
+    display: flex;
+    flex-direction: row;
+}
+
+.dashboard-page table tr:nth-child(odd) form button {
+    background-color: #343A40;
+    border: 0;
+    margin-left: .5em;
+}
+
+.dashboard-page table tr:nth-child(even) form button {
+    background-color: #3E444A;
+    border: 0;
+    margin-left: .5em;
+}
+
+.dashboard-page table tr .action .view {
+    margin-right: .5em;
+}
