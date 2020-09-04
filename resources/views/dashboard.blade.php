@@ -33,10 +33,12 @@
                         <a href="/view/{{$a->id}}" class="view">
                             <img src="img/eye.png" alt="" widht="25px" height="25px">
                         </a>
-                        <a href="">
+                        <a href="/mengubah/{{$a->id}}">
                             <img src="img/edit.png" alt="" width="25px" height="25px">
                         </a>
-                        <form action="">
+                        <form action="/menghapus/{{$a->id}}" method="POST">
+                            @csrf
+                            @method('delete')
                             <button>
                                 <img src="img/trash.png" alt="" width="25px" height="25px">
                             </button>

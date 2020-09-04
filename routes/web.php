@@ -18,4 +18,7 @@ Route::get('/', 'ArticleController@index');
 Route::get('/menambahkan', 'ArticleController@create');
 Route::post('/menambahkan', 'ArticleController@store');
 Route::get('/view/{id}', 'ArticleController@show');
+Route::get('/mengubah/{id}', 'ArticleController@edit');
+Route::patch('/mengubah/{id}', 'ArticleController@update');
+Route::delete('/menghapus/{id}', 'ArticleController@destroy');
 

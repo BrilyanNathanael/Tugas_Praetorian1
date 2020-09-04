@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -37,9 +38,9 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $gambar = $request->file('gambar');
-        $name = time() . $gambar->getClientOriginalExtension();
+        $name = time() . '.' . $gambar->getClientOriginalExtension();
         $gambar->move(public_path('storage/images'), $name);
-        
+
         Article::create([
             'gambar' => $name,
             'judul' => $request->judul,
@@ -70,7 +71,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        return view('edit',compact('article'));
     }
 
     /**
@@ -82,7 +84,34 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->hasFile('gambar'))
+        {
+            $article = Article::where('id',$id)->first();
+            Storage::delete('images/' . $article->gambar);
+
+            $gambar = $request->file('gambar');
+            $name = time() . '.' . $gambar->getClientOriginalExtension();
+            $gambar->move(public_path('storage/images'), $name);
+
+            Article::where('id', $id)
+                ->update([
+                    'judul' => $request->judul,
+                    'nama' => $request->nama,
+                    'description' => $request->description,
+                    'gambar' => $name
+            ]);
+        }
+        
+        else
+        {
+            Article::where('id', $id)
+                ->update([
+                    'judul' => $request->judul,
+                    'nama' => $request->nama,
+                    'description' => $request->description,
+            ]);
+        }
+        return redirect('/');
     }
 
     /**
@@ -93,6 +122,10 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::where('id',$id)->first();
+        Storage::delete('images/' . $article->gambar);
+        
+        Article::where('id',$id)->delete();
+        return redirect('/');
     }
 }
