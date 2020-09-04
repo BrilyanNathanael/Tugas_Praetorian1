@@ -15,6 +15,7 @@
             <thead>
                 <tr>
                     <th scope="col">No</th>
+                    <th scope="col">Gambar Artikel</th>
                     <th scope="col">Judul Artikel</th>
                     <th scope="col">Isi Artikel</th>
                     <th scope="col">Aksi</th>
@@ -24,6 +25,7 @@
                 @foreach($article as $a)
                 <tr>
                     <th scope="row">{{$loop->iteration}}</th>
+                    <td><img src="{{'/storage/images/' . $a->gambar}}" width="100px" height="100px" alt=""></td>
                     <td>{{$a->judul}}</td>
                     <?php $description = substr($a->description,0,60); ?>
                     <td>{{$description}}...</td>

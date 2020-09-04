@@ -11,7 +11,7 @@
     <section class="create-page">
         <div class="create-border">
             <h1>Menambahkan</h1>
-            <form action="/menambahkan" method="post">
+            <form action="/menambahkan" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="title">Judul Artikel</label>

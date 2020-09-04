@@ -13,7 +13,7 @@
             <h1>{{$article->judul}}</h1>
             <p>Created By {{$article->nama}}</p>
             <div class="gambar">
-                <img src="" alt="">
+                <img src="{{'/storage/images/' . $article->gambar}}" alt="" width="300px" height="300px">
             </div>
             <div class="description">
                 <p>{{$article->description}}</p>

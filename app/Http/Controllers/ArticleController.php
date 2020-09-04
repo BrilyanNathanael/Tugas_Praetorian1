@@ -36,8 +36,12 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $gambar = $request->file('gambar');
+        $name = time() . $gambar->getClientOriginalExtension();
+        $gambar->move(public_path('storage/images'), $name);
+        
         Article::create([
-            'gambar' => $request->gambar,
+            'gambar' => $name,
             'judul' => $request->judul,
             'nama' => $request->nama,
             'description' => $request->description,
