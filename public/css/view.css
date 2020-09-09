@@ -2,12 +2,32 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    color: #FFFFFF;
     font-family: 'poppins';
 }
 
 body {
     background-color: #1D2134;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+nav .nav-left p {
+    color: #ffffff;
+}
+
+nav a {
+    margin-left: 1em;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: none;
+    color: #ffffff;
 }
 
 .view-page {
@@ -28,6 +48,11 @@ body {
 .view-border h1 {
     text-align: center;
     font-weight: 700;
+    color: #ffffff;
+}
+
+.view-border p {
+    color: #ffffff;
 }
 
 .view-page .view-border .button a {
@@ -43,4 +68,34 @@ body {
 .view-page .view-border .button a:hover {
     background-color: blue;
     transition: .2s;
+}
+
+.view-page .view-border .gambar {
+    margin-bottom: 1em;
+}
+
+.view-page .view-border .gambar,
+.view-page .view-border .description {
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.view-page .view-border .komentar {
+    color: #ffffff;
+    margin-top: 3em;
+}
+
+.view-page .view-border .komentar h3 {
+    font-weight: 700;
+}
+
+.view-page .view-border .komentar .komentar-list {
+    margin-top: 1em;
+    border-top: 2px solid #ffffff;
+    padding-top: 1em;
+}
+
+.view-page .view-border .komentar .komentar-list h5 {
+    font-weight: 600;
 }

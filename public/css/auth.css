@@ -1,0 +1,55 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    font-family: 'poppins';
+}
+
+body {
+    background-color: #1D2134;
+}
+
+.container {
+    padding: 8em 0;
+    height: 100vh;
+    border: 0;
+}
+
+.container .card {
+    border: 0;
+}
+
+.container .card-header {
+    background-color: #343A40;
+    border-bottom: 2px solid white;
+}
+
+.container .card-header h2 {
+    font-weight: 700;
+}
+
+.container .card-body {
+    background-color: #343A40;
+}
+
+.container .account a {
+    color: #989AA0;
+    text-decoration: none;
+}
+
+.container .login-btm {
+    margin-top: 1em;
+}
+
+.container button {
+    background-color: #DD5926;
+    color: #FFFFFF;
+    border: 0;
+    font-weight: 700;
+}
+
+.container .login-btm a {
+    color: white;
+    text-decoration: none;
+}

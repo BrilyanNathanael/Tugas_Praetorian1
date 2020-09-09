@@ -10,6 +10,23 @@ body {
     background-color: #1D2134;
 }
 
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+nav a {
+    margin-right: .5em;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: none;
+    color: #ffffff;
+}
+
 .dashboard-page {
     padding: 3em 5em;
 }
@@ -38,13 +55,13 @@ body {
 }
 
 .dashboard-page table tr:nth-child(odd) form button {
-    background-color: #343A40;
     border: 0;
     margin-left: .5em;
+    background-color: #3E444A;
 }
 
 .dashboard-page table tr:nth-child(even) form button {
-    background-color: #3E444A;
+    background-color: #343A40;
     border: 0;
     margin-left: .5em;
 }

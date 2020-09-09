@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 class ArticleController extends Controller
 {
@@ -16,7 +17,8 @@ class ArticleController extends Controller
     public function index()
     {
         $article = Article::all();
-        return view('dashboard', compact('article'));
+        $user = Auth::user();
+        return view('dashboard', compact('article','user'));
     }
 
     /**
@@ -26,7 +28,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $user = Auth::user();
+        return view('create', compact('user'));
     }
 
     /**
@@ -59,8 +62,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user();
         $article = Article::findOrFail($id);
-        return view('view',compact('article'));
+        return view('view',compact('article', 'user'));
     }
 
     /**
@@ -71,8 +75,9 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
         $article = Article::findOrFail($id);
-        return view('edit',compact('article'));
+        return view('edit',compact('article', 'user'));
     }
 
     /**

@@ -12,13 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'ArticleController@index');
-
 Route::get('/menambahkan', 'ArticleController@create');
 Route::post('/menambahkan', 'ArticleController@store');
+Route::get('/logout','Auth\LoginController@logout');
 Route::get('/view/{id}', 'ArticleController@show');
 Route::get('/mengubah/{id}', 'ArticleController@edit');
 Route::patch('/mengubah/{id}', 'ArticleController@update');
 Route::delete('/menghapus/{id}', 'ArticleController@destroy');
+
 

@@ -8,6 +8,14 @@
     <title>Halaman Menambahkan</title>
 </head>
 <body>
+    <nav>
+        <div class="nav-left">
+            <p>Halo, {{$user->name}}</p>   
+        </div>
+        <div class="nav-right">
+            <a href="{{route('logout')}}">Logout</a>
+        </div>
+    </nav>
     <section class="create-page">
         <div class="create-border">
             <h1>Menambahkan</h1>
@@ -25,7 +33,8 @@
                     <label for="description">Isi Artikel</label>
                     <textarea id="description" cols="30" rows="10" class="form-control" name="description"></textarea>
                 </div>
-                <input type="file" name="gambar">
+                <img id="output" width="200px" height="200px"/><br>
+                <input type="file" accept="image/*" onchange="loadFile(event)" name="gambar">
                 <div class="link">
                     <a href="/" class="link-hlm">Click untuk ke halaman lain</a>
                 </div>
@@ -35,5 +44,15 @@
             </form>
         </div>
     </section>
+    <script>
+        var loadFile = function(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('output');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        };
+    </script>
 </body>
 </html>
