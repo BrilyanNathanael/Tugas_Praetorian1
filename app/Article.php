@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $fillable = [
-        'gambar', 'nama', 'judul', 'description',
+        'user_id', 'gambar', 'nama', 'judul', 'description',
     ];
+
+    public function users(){
+        return $this->belongsTo('App\User');
+    }
+
+    public function commentUser(){
+        return $this->belongsToMany('App\User', 'article_users')->withPivot('id','comment');
+    }
 }

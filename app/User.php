@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'isAdmin'
     ];
 
     /**
@@ -36,4 +36,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function articles(){
+        return $this->hasMany('App\Article');
+    }
+
+    public function commentArticle(){
+        return $this->belongsToMany('App\Article', 'article_users')->withPivot('id','comment');
+    }
+
+    public function replyComment(){
+        return $this->belongsToMany('App\ArticleUser', 'reply_users')->withPivot('article_user_id', 'reply');
+    }
 }

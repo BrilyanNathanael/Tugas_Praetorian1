@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Article;
 use Illuminate\Support\Facades\Storage;
 use Auth;
+use App\ArticleUser;
+use App\ReplyUser;
+use App\Jobs\ProcessMail;
+use App\Mail\SubscriptionMail;
 
 class ArticleController extends Controller
 {
@@ -64,7 +68,14 @@ class ArticleController extends Controller
     {
         $user = Auth::user();
         $article = Article::findOrFail($id);
-        return view('view',compact('article', 'user'));
+        $artUsers = ArticleUser::all();
+        return view('view',compact('article', 'user', 'artUsers'));
+    }
+
+    public function mail()
+    {
+        $this->dispatch(new ProcessMail());
+        return redirect()->back();
     }
 
     /**
@@ -77,6 +88,9 @@ class ArticleController extends Controller
     {
         $user = Auth::user();
         $article = Article::findOrFail($id);
+        if($user->id !== $article->user_id){
+            return redirect()->back();
+        }
         return view('edit',compact('article', 'user'));
     }
 

@@ -8,14 +8,27 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <nav>
-        <div class="nav-left">
-            <p>Halo, {{$user->name}}</p>   
-        </div>
-        <div class="nav-right">
-            <a href="{{route('logout')}}">Logout</a>
-        </div>
-    </nav>
+    @auth
+        <nav>
+            <div class="nav-left">
+                <p>Halo, {{$user->name}}</p>   
+            </div>
+            <div class="nav-right">
+                <a href="{{route('logout')}}">Logout</a>
+            </div>
+        </nav>
+    @endauth
+    @guest
+        <nav>
+            <div class="nav-left">
+                <p>Halo, User</p>   
+            </div>
+            <div class="nav-right">
+                <a href="{{route('login')}}">Login</a>
+                <a href="{{route('register')}}">Register</a>
+            </div>
+        </nav>
+    @endguest
     <section class="dashboard-page">
         <h1>Dashboard</h1>
         <a href="/menambahkan">Menambahkan Artikel</a>
@@ -50,19 +63,49 @@
                         <td>{{$a->description}}</td>
                     @endif
                     <td class="action">
+                        @auth
+                        @if($user->isAdmin == 0 && $user->id == $a->user_id)
+                            <a href="/view/{{$a->id}}" class="view">
+                                <img src="img/eye.png" alt="" widht="25px" height="25px">
+                            </a>
+                            <a href="/mengubah/{{$a->id}}">
+                                <img src="img/edit.png" alt="" width="25px" height="25px">
+                            </a>
+                            <form action="/menghapus/{{$a->id}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button>
+                                    <img src="img/trash.png" alt="" width="25px" height="25px">
+                                </button>
+                            </form>
+                        @elseif($user->isAdmin == 1)
+                            <a href="/view/{{$a->id}}" class="view">
+                                <img src="img/eye.png" alt="" widht="25px" height="25px">
+                            </a>
+                            @if($user->id == $a->user_id)
+                                <a href="/mengubah/{{$a->id}}">
+                                    <img src="img/edit.png" alt="" width="25px" height="25px">
+                                </a>
+                            @endif
+                            <form action="/menghapus/{{$a->id}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button>
+                                    <img src="img/trash.png" alt="" width="25px" height="25px">
+                                </button>
+                            </form>
+                        @else
                         <a href="/view/{{$a->id}}" class="view">
                             <img src="img/eye.png" alt="" widht="25px" height="25px">
                         </a>
-                        <a href="/mengubah/{{$a->id}}">
-                            <img src="img/edit.png" alt="" width="25px" height="25px">
+                        @endif
+                        @endauth
+
+                        @guest
+                        <a href="/view/{{$a->id}}" class="view">
+                            <img src="img/eye.png" alt="" widht="25px" height="25px">
                         </a>
-                        <form action="/menghapus/{{$a->id}}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button>
-                                <img src="img/trash.png" alt="" width="25px" height="25px">
-                            </button>
-                        </form>
+                        @endguest
                     </td>
                 </tr>
                 @endforeach

@@ -8,18 +8,22 @@
     <title>Halaman Artikel</title>
 </head>
 <body>
+    @auth
     <nav>
         <div class="nav-left">
             <p>Halo, {{$user->name}}</p>   
         </div>
         <div class="nav-right">
+            <a href="/mail">
+                <img src="/img/gmail.png" alt="" width="25px" height="25px">
+            </a>
             <!-- Button trigger modal -->
-            <button type="button" data-toggle="modal" data-target="#exampleModal" style="background-color: #1D2134; border: 0;">
+            <!-- <button type="button" data-toggle="modal" data-target="#exampleModal" style="background-color: #1D2134; border: 0;">
             <img src="/img/gmail.png" alt="" width="25px" height="25px">
-            </button>
+            </button> -->
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -28,21 +32,34 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <form action="/mail" method="POST">
                     <div class="modal-body">
-                        <form action="">
-                            <input type="text" placeholder="Input your email" class="form-control">
-                        </form>
+                            @csrf
+                            <input type="text" name="email" placeholder="Input your email" class="form-control">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
+                    </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <a href="{{route('logout')}}">Logout</a>
         </div>
     </nav>
+    @endauth
+    @guest
+        <nav>
+            <div class="nav-left">
+                <p>Halo, User</p>   
+            </div>
+            <div class="nav-right">
+                <a href="{{route('login')}}">Login</a>
+                <a href="{{route('register')}}">Register</a>
+            </div>
+        </nav>
+    @endguest
     <section class="view-page">
         <div class="view-border">
             <h1>{{$article->judul}}</h1>
@@ -55,17 +72,33 @@
             </div>
             <div class="komentar">
                 <h3>KOMENTAR ARTIKEL</h3>
-                <div class="komentar-list">
-                    <h5>Rizky S</h5>
-                    <p>Ini artikel yang saya butuhkan, terimakasih infonya</p>
-                </div>
-                <div class="komentar-list">
-                    <h5>Rudi Bell</h5>
-                    <p>Saya suka tema dari artikel ini yang sangat mengedukasi</p>
-                </div>
-                <form action="">
-                    <textarea name="" id="" cols="130" rows="5" placeholder="Tinggalkan komentar..." class="form-control"></textarea>
+                <form action="/comment/{{$article->id}}" method="POST">
+                    @csrf
+                    <textarea onclick="klik()" name="comment" id="" rows="3" placeholder="Tinggalkan komentar..." class="form-control"></textarea>
+                    <div class="comment" id="button">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
                 </form>
+                @foreach($article->commentUser as $comment)
+                <div class="komentar-list">
+                    <h5>{{$comment->name}}</h5>
+                    <p>{{$comment->pivot->comment}}</p>
+                    <div class="reply">
+                        <p><span>BALAS</span></p>
+                        <div class="reply-content">
+                            <form action="/reply/{{$comment->pivot->id}}" method="POST">
+                                @csrf
+                                <textarea name="reply" id="" rows="3" class="form-control" placeholder="Balas Komentar..."></textarea>
+                                <div class="replied">
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="garis-abu"></div>
+                    </div>
+                </div>
+                @endforeach
+                <div class="garis-putih"></div>
             </div>
             <div class="button" style="margin-top: 1.5em;">
                 <a href="/">Kembali</a>
@@ -76,5 +109,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>

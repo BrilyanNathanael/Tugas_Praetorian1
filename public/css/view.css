@@ -86,16 +86,79 @@ nav a:hover {
     margin-top: 3em;
 }
 
+.view-page .view-border .komentar>form {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
 .view-page .view-border .komentar h3 {
     font-weight: 700;
 }
 
+.view-page .view-border .komentar .comment {
+    display: none;
+    justify-content: flex-end;
+}
+
+.view-page .view-border .komentar .comment button {
+    padding: .5em 1em;
+    color: white;
+    background-color: #DD5926;
+    margin-top: .4em;
+    border: 0;
+    font-weight: 700;
+}
+
 .view-page .view-border .komentar .komentar-list {
-    margin-top: 1em;
+    margin-top: 3em;
     border-top: 2px solid #ffffff;
     padding-top: 1em;
 }
 
 .view-page .view-border .komentar .komentar-list h5 {
     font-weight: 600;
+}
+
+.view-page .view-border .komentar .komentar-list .reply p span:hover {
+    cursor: pointer;
+    color: lightgray;
+}
+
+.view-page .view-border .komentar .komentar-list .reply .reply-users {
+    margin: 2em 0 0 0;
+    padding-left: 2em;
+    padding-top: .6em;
+    flex-direction: column;
+    border-top: 1px solid gray;
+}
+
+.view-page .view-border .komentar .komentar-list .reply .garis-abu {
+    background-color: gray;
+    height: 1px;
+    width: 100%;
+}
+
+.view-page .view-border .komentar .komentar-list .reply .reply-users p {
+    font-size: 12px;
+}
+
+.view-page .view-border .komentar .garis-putih {
+    background-color: #ffffff;
+    height: 2px;
+    width: 100%;
+    margin-top: .3em;
+}
+
+.view-page .view-border .komentar .komentar-list .reply .reply-content .replied {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.view-page .view-border .komentar .komentar-list .reply .reply-content .replied button {
+    padding: .5em 1em;
+    color: white;
+    background-color: #DD5926;
+    margin-top: .4em;
+    border: 0;
+    font-weight: 700;
 }
