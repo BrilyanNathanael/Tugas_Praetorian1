@@ -49,6 +49,7 @@ class ArticleController extends Controller
         $gambar->move(public_path('storage/images'), $name);
 
         Article::create([
+            'user_id' => Auth::user()->id,
             'gambar' => $name,
             'judul' => $request->judul,
             'nama' => $request->nama,
