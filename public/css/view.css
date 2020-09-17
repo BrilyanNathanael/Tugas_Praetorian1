@@ -125,17 +125,11 @@ nav a:hover {
 }
 
 .view-page .view-border .komentar .komentar-list .reply .reply-users {
-    margin: 2em 0 0 0;
+    margin: 2em 0;
     padding-left: 2em;
     padding-top: .6em;
     flex-direction: column;
     border-top: 1px solid gray;
-}
-
-.view-page .view-border .komentar .komentar-list .reply .garis-abu {
-    background-color: gray;
-    height: 1px;
-    width: 100%;
 }
 
 .view-page .view-border .komentar .komentar-list .reply .reply-users p {

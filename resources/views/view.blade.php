@@ -85,6 +85,14 @@
                     <p>{{$comment->pivot->comment}}</p>
                     <div class="reply">
                         <p><span>BALAS</span></p>
+                        @foreach($replied as $r)
+                            @if($r->article_user_id === $comment->pivot->id)
+                            <div class="reply-users">
+                                <h6>{{$name = App\User::find($r->user_id)->name}}</h6>
+                                <p>{{$r->reply}}</p>
+                            </div>
+                            @endif
+                        @endforeach
                         <div class="reply-content">
                             <form action="/reply/{{$comment->pivot->id}}" method="POST">
                                 @csrf
@@ -94,7 +102,6 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="garis-abu"></div>
                     </div>
                 </div>
                 @endforeach

@@ -69,8 +69,8 @@ class ArticleController extends Controller
     {
         $user = Auth::user();
         $article = Article::findOrFail($id);
-        $artUsers = ArticleUser::all();
-        return view('view',compact('article', 'user', 'artUsers'));
+        $replied = ReplyUser::all();
+        return view('view',compact('article', 'user', 'replied'));
     }
 
     public function mail()
